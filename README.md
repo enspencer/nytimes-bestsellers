@@ -39,9 +39,15 @@ it can take optional parameters
 returns an overview of Times best-seller lists given a week in YYYY-MM-DD form
 `puts bestseller_lists_overview('2012-04-12')`
 
-3. find_list_names
+3. search_list(list_name, o = {})
 
-This method takes no
+4. find_list_names
+
+This method takes no parameters and returns all available list names which you can use to query the get_list method.
+
+5. age_groups
+
+This method takes no parameters and returns all available age groups which you can use to query the single_history method. In most cases the age group will be null, so it's not a great search method on the data. I've listen the age groups below but you can see these available age groups for yourself using the `age_groups` method.
 
 
 ## Lists
@@ -51,6 +57,12 @@ The list names to search from are:
 Combined Print and E-Book Fiction, Combined Print and E-Book Nonfiction, Hardcover Fiction, Hardcover Nonfiction, Trade Fiction Paperback, Mass Market Paperback, Paperback Nonfiction, E-Book Fiction, E-Book Nonfiction, Hardcover Advice, Paperback Advice, Advice How-To and Miscellaneous, Picture Books, Chapter Books, Childrens Middle Grade, Young Adult, Paperback Books, Series Books, Hardcover Graphic Books, Paperback Graphic Books, Manga, Combined Print Fiction, Combined Print Nonfiction, Hardcover Business Books, Paperback Business Books, Business Books, Hardcover Political Books, Science Times, Dining
 
 When passing these names as paraemeters replace spaces with hyphens. The parameter is not case sensitive.
+
+## Age Groups
+
+The age group parameter can be used as an optional parameter in the `single_history` method. In most cases the age group will be null, so it's not a great search method on the data. But you can use the age groups below to search, or see these available age groups for yourself using the `age_groups` method.
+
+Valid age groups: "Ages 1 to 5", "Ages 10 and up", "Ages 10 to 13", "Ages 10 to 14", "Ages 10 to 15", "Ages 10 to 18", "Ages 11 and up", "Ages 11 to 14", "Ages 11 to 15", "Ages 12 and  up", "Ages 12 and up", "Ages 12 to 14", "Ages 12 to 17", "Ages 12 to 18", "Ages 13 and up", "Ages 13 to 16", "Ages 13 to 17", "Ages 13 to 18", "Ages 14 and up", "Ages 14 to 17", "Ages 14 to 18", "Ages 15 and up", "Ages 15 to 17", "Ages 15 to 18", "Ages 16 and up", "Ages 17 and up", "Ages 18 and up", "Ages 2 and up", "Ages 2 to 5", "Ages 2 to 6", "Ages 2 to 7", "Ages 3 and up", "Ages 3 to 5", "Ages 3 to 6", "Ages 3 to 7", "Ages 3 to 8, "Ages 4 and up", "Ages 4 to 7", "Ages 4 to 8", "Ages 5 and up", "Ages 5 to 10"}, "Ages 5 to 7", "Ages 5 to 8", "Ages 5 to 9", "Ages 6 and up", "Ages 6 to 10"}, "Ages 6 to 12"}, "Ages 6 to 14", "Ages 6 to 8", "Ages 6 to 9", "Ages 7 and up", "Ages 7 to 10", "Ages 7 to 12", "Ages 7 to 17", "Ages 7 to 9", "Ages 8 and up", "Ages 8 to 12", "Ages 8 to 14", "Ages 9 and up", "Ages 9 to 11", "Ages 9 to 12", "Ages 9 to 13", "All ages"
 
 ## Contributing
 
