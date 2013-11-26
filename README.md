@@ -20,6 +20,15 @@ Or install it yourself as:
 
 You'll want to sign up for an [API key](http://developer.nytimes.com/apps/register) to start.
 
+Setup a new instance:
+
+```ruby
+@client = Bestsellers.new
+@client.configure do |config|  
+  config.api_key = ENV['API_KEY']
+end
+```
+
 ## Methods
 
 Five requests are available: get a best-seller list, search best-seller lists, get the history of a best seller, get an overview of all of the best-seller lists for a given week and get the names of Times best-seller lists.
@@ -29,15 +38,15 @@ Five requests are available: get a best-seller list, search best-seller lists, g
 This method has a required parameter of list name(see lists below or call the find_list_names method to find them for yourself) and takes an optional parameter of date, as a string in YYYY-MM-DD format. It also takes an optional parameter of response format and if none is specified it defaults to json.
 
 with no optional parameters it gets the most recent list
-`puts get_list('hardcover-nonfiction')`
+`@client.get_list('hardcover-nonfiction')`
 
 it can take optional parameters
-`puts get_list('hardcover-nonfiction', date: '2012-04-12', response: 'xml')`
+`@client.get_list('hardcover-nonfiction', date: '2012-04-12', response: 'xml')`
 
 2. bestseller_lists_overview()
 
 returns an overview of Times best-seller lists given a week in YYYY-MM-DD form
-`puts bestseller_lists_overview('2012-04-12')`
+`@client.bestseller_lists_overview('2012-04-12')`
 
 3. search_list(list_name, o = {})
 
