@@ -10,6 +10,8 @@ end
 
 group :test do
   gem 'rspec'
+  gem 'shoulda-context'
+  gem 'webmock'
   gem 'simplecov'
   gem 'coveralls'
 end

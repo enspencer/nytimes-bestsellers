@@ -1,13 +1,16 @@
-require_relative 'nytimes_bestsellers/version'
-
+require 'json'
 require 'httparty'
-require 'pry'
-require 'dotenv'
-
-Dotenv.load "../.env"
+require 'nytimes_bestsellers/configuration'
 
 module Bestsellers
+
   class List
+    include Bestsellers::Configuration
+    include HTTParty
+
+    def initialize
+      reset
+    end
 
     def self.get_list(list_name, o = {})
       # enter a list, optional: enter offset, sort_by, sort_order, response_format
@@ -36,14 +39,11 @@ module Bestsellers
       HTTParty.get("http://api.nytimes.com/svc/books/v2/lists/#{date}/#{list_name}#{response_format}?&offset=#{offset}&sort-order=#{sort_order}&api-key=#{ENV['API_KEY']}")
     end
 
-
-
-
     def self.search_list(list_name, o = {})
 
       url = "http://api.nytimes.com/svc/books/v2/lists?list-name=#{list_name}"
 
-      # search a list by list_name, optional: bestsellers-date, date, isbn, list, list-name, published-date, rank, rank-last-week, weeks-on-list
+      # search a list by list_name, optional: bestsellers-date, date, isbn, published-date, rank, rank-last-week, weeks-on-list
       if o[:bestsellers_date]
         bestsellers_date = o[:bestsellers_date]
         url << "&bestsellers-date=#{bestsellers_date}"
@@ -144,19 +144,4 @@ module Bestsellers
   end
 end
 
-# with no optional parameters it gets the most recent list
-# puts get_list('hardcover-nonfiction')
-
-# it can take optional parameters
-# puts get_list('hardcover-nonfiction', date: '2012-04-12')
-
-# returns an overview of Times best-seller lists given a week in YYYY-MM-DD form
-# puts Bestsellers::List.bestseller_lists_overview('2012-04-12')
-
-# puts Bestsellers::List.single_history(publisher: 'random house', author: 'billy collins')
-
-# puts Bestsellers::List.single_history(age_group: 'Ages 10 to 14', response_format: 'xml')
-
-puts Bestsellers::List.search_list('hardcover-nonfiction', rank: 1)
-
-# puts Bestsellers::List.get_list('hardcover-nonfiction', sort_by: 'weeks-on-list')
+Bestsellers::List.single_history(title: 'lean in')

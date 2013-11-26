@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Getting Started
 
-You'll want to sign up for an [API key](http://developer.nytimes.com/apps/register)
+You'll want to sign up for an [API key](http://developer.nytimes.com/apps/register) to start.
 
 ## Methods
 
@@ -41,11 +41,13 @@ returns an overview of Times best-seller lists given a week in YYYY-MM-DD form
 
 3. search_list(list_name, o = {})
 
-4. find_list_names
+4. single_history
+
+5. find_list_names
 
 This method takes no parameters and returns all available list names which you can use to query the get_list method.
 
-5. age_groups
+6. age_groups
 
 This method takes no parameters and returns all available age groups which you can use to query the single_history method. In most cases the age group will be null, so it's not a great search method on the data. I've listen the age groups below but you can see these available age groups for yourself using the `age_groups` method.
 
@@ -71,3 +73,7 @@ Valid age groups: "Ages 1 to 5", "Ages 10 and up", "Ages 10 to 13", "Ages 10 to 
 3. Commit your changes (`git commit -m 'Add this feature'`)
 4. Push to the branch (`git push origin feature`)
 5. Create new Pull Request
+
+## License
+
+Copyright © 2013 Emma Spencer. See LICENSE.txt for further details.

@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.description = %Q{Gem for accessing the NYTimes Bestsellers API}
   s.authors     = ["Emma"]
   s.email       = 'emma.n.spencer@gmail.com'
-  s.files       = ["lib/nytimes-bestsellers.rb"]
+  s.files       = ["lib/nytimes_bestsellers.rb"]
   s.homepage    =
     'http://github.com/enspencer/nytimes-bestsellers'
   s.license       = 'MIT'
