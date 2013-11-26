@@ -1,7 +1,7 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require File.expand_path("../lib/nytimes-bestsellers/version", __FILE__)
+require File.expand_path("../lib/nytimes_bestsellers/version", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = 'nytimes-bestsellers'
