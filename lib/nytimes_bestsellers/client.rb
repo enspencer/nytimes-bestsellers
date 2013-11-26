@@ -1,6 +1,7 @@
 require 'json'
 require 'httparty'
-require 'nytimes_bestsellers/configuration'
+require 'pry'
+require_relative 'configuration'
 
 module Bestsellers
 
@@ -143,5 +144,3 @@ module Bestsellers
 
   end
 end
-
-Bestsellers::List.single_history(title: 'lean in')

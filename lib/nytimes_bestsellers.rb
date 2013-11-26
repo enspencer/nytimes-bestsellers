@@ -1,8 +1,6 @@
-require 'httparty'
+require_relative 'nytimes_bestsellers/client'
 require 'pry'
 require 'dotenv'
-require 'nytimes_bestsellers/version'
-require 'nytimes_bestsellers/client'
 
 Dotenv.load "../.env"
 
@@ -25,3 +23,11 @@ module Bestsellers
     end
   end
 end
+
+list = Bestsellers.configure do |config|  
+  config.api_key = "ENV['API_KEY']"
+end
+
+binding.pry
+
+list.get_list('hardcover-fiction')
