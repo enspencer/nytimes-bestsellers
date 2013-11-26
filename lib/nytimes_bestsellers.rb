@@ -24,10 +24,11 @@ module Bestsellers
   end
 end
 
-list = Bestsellers.configure do |config|  
-  config.api_key = "ENV['API_KEY']"
+@client = Bestsellers.new
+@client.configure do |config|  
+  config.api_key = ENV['API_KEY']
 end
 
-binding.pry
 
-list.get_list('hardcover-fiction')
+
+puts @client.single_history(title: 'lean in')

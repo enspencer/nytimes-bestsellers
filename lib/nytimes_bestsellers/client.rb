@@ -13,7 +13,7 @@ module Bestsellers
       reset
     end
 
-    def self.get_list(list_name, o = {})
+    def get_list(list_name, o = {})
       # enter a list, optional: enter offset, sort_by, sort_order, response_format
       if o[:date]
         date = o[:date]
@@ -37,10 +37,10 @@ module Bestsellers
         response_format = '.' + o[:response_format]
       end
 
-      HTTParty.get("http://api.nytimes.com/svc/books/v2/lists/#{date}/#{list_name}#{response_format}?&offset=#{offset}&sort-order=#{sort_order}&api-key=#{ENV['API_KEY']}")
+      HTTParty.get("http://api.nytimes.com/svc/books/v2/lists/#{date}/#{list_name}#{response_format}?&offset=#{offset}&sort-order=#{sort_order}&api-key=#{api_key}")
     end
 
-    def self.search_list(list_name, o = {})
+    def search_list(list_name, o = {})
 
       url = "http://api.nytimes.com/svc/books/v2/lists?list-name=#{list_name}"
 
@@ -83,21 +83,21 @@ module Bestsellers
         response_format = '.' + o[:response_format]
       end
 
-      url << "&api-key=#{ENV['API_KEY']}"
+      url << "&api-key=#{api_key}"
 
       # HTTParty.get("http://api.nytimes.com/svc/books/v2/lists#{response_format}?list-name=#{list_name}&bestsellers-date=#{bestsellers_date}&date=#{date}&isbn=#{isbn}&published-date=#{published_date}&rank=#{rank}&rank-last-week=#{rank_last_week}&weeks-on-list=#{weeks_on_list}&api-key=#{ENV['API_KEY']}")
       HTTParty.get(url)
     end
 
-    def self.bestseller_lists_overview(date, o = {})
+    def bestseller_lists_overview(date, o = {})
       if o[:date]
         date = o[:date]
       end
 
-      HTTParty.get("http://api.nytimes.com/svc/books/v2/lists/overview?published_date=#{date}&api-key=#{ENV['API_KEY']}")
+      HTTParty.get("http://api.nytimes.com/svc/books/v2/lists/overview?published_date=#{date}&api-key=#{api_key}")
     end
 
-    def self.single_history(o = {})
+    def single_history(o = {})
       age_group = o[:age_group]
       if o[:author]
         author = o[:author].to_s.gsub(/ /, '_')
@@ -131,15 +131,15 @@ module Bestsellers
         price = o[:price]
       end
 
-      HTTParty.get("http://api.nytimes.com/svc/books/v2/lists/best-sellers/history#{response_format}?author=#{author}&publisher=#{publisher}&age-group=#{age_group}&title=#{title}&api-key=#{ENV['API_KEY']}")
+      HTTParty.get("http://api.nytimes.com/svc/books/v2/lists/best-sellers/history#{response_format}?author=#{author}&publisher=#{publisher}&age-group=#{age_group}&title=#{title}&api-key=#{api_key}")
     end
 
-    def self.find_list_names
-      HTTParty.get("http://api.nytimes.com/svc/books/v2/lists/names?api-key=#{ENV['API_KEY']}")
+    def find_list_names
+      HTTParty.get("http://api.nytimes.com/svc/books/v2/lists/names?api-key=#{api_key}")
     end
 
-    def self.age_groups
-      HTTParty.get("http://api.nytimes.com/svc/books/v2/lists/age-groups?api-key=#{ENV['API_KEY']}")
+    def age_groups
+      HTTParty.get("http://api.nytimes.com/svc/books/v2/lists/age-groups?api-key=#{api_key}")
     end
 
   end
