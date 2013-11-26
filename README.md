@@ -25,7 +25,7 @@ Setup a new instance:
 ```ruby
 @client = Bestsellers.new
 @client.configure do |config|  
-  config.api_key = ENV['API_KEY']
+  config.api_key = "YOUR_API_KEY"
 end
 ```
 
