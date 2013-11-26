@@ -15,31 +15,40 @@ module Bestsellers
 
     def get_list(list_name, o = {})
       # enter a list, optional: enter offset, sort_by, sort_order, response_format
+      url = "http://api.nytimes.com/svc/books/v2/lists"
+
       if o[:date]
         date = o[:date]
+        url << "/#{date}"
+      end
+
+      url << "/#{list_name}"
+
+      if o[:response_format]
+        response_format = '.' + o[:response_format] + "?"
+        url << response_format
+      else
+        url << "?"
       end
 
       if o[:offset]
         offset = o[:offset].to_s
+        url << "&offset=#{offset}"
       end
 
       if o[:sort_by]
-        # options are: bestsellers-date | date | isbn | list | list-name | published-date rank | rank-last-week | weeks-on-list
         sort_by = o[:sort_by]
+        url << "&sort-by=#{sort_by}"
       end
 
       if o[:sort_order] 
-        # can be ASC OR DESC
         sort_order = o[:sort_order]
+        url << "&sort-order=#{sort_order}"
       end
 
-      if o[:response_format]
-        response_format = '.' + o[:response_format]
-      end
+      url << "&api-key=#{api_key}"
 
-      request_str = "http://api.nytimes.com/svc/books/v2/lists/#{date}/#{list_name}#{response_format}?&offset=#{offset}&sort-order=#{sort_order}&api-key=#{api_key}"
-
-      HTTParty.get(request_str)
+      HTTParty.get(url)
     end
 
     def search_list(list_name, o = {})
@@ -87,7 +96,6 @@ module Bestsellers
 
       url << "&api-key=#{api_key}"
 
-      # HTTParty.get("http://api.nytimes.com/svc/books/v2/lists#{response_format}?list-name=#{list_name}&bestsellers-date=#{bestsellers_date}&date=#{date}&isbn=#{isbn}&published-date=#{published_date}&rank=#{rank}&rank-last-week=#{rank_last_week}&weeks-on-list=#{weeks_on_list}&api-key=#{ENV['API_KEY']}")
       HTTParty.get(url)
     end
 

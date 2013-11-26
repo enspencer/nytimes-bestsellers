@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/enspencer/nytimes-bestsellers.png?branch=master)](https://travis-ci.org/enspencer/nytimes-bestsellers)
+
 [![Coverage Status](https://coveralls.io/repos/enspencer/nytimes-bestsellers/badge.png)](https://coveralls.io/r/enspencer/nytimes-bestsellers)
 
 # New York Times Bestsellers
