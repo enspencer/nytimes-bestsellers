@@ -37,7 +37,9 @@ module Bestsellers
         response_format = '.' + o[:response_format]
       end
 
-      HTTParty.get("http://api.nytimes.com/svc/books/v2/lists/#{date}/#{list_name}#{response_format}?&offset=#{offset}&sort-order=#{sort_order}&api-key=#{api_key}")
+      request_str = "http://api.nytimes.com/svc/books/v2/lists/#{date}/#{list_name}#{response_format}?&offset=#{offset}&sort-order=#{sort_order}&api-key=#{api_key}"
+
+      HTTParty.get(request_str)
     end
 
     def search_list(list_name, o = {})

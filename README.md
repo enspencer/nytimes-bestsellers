@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/enspencer/nytimes-bestsellers/badge.png)](https://coveralls.io/r/enspencer/nytimes-bestsellers)
+
 # New York Times Bestsellers
 
 This is a Ruby wrapper for the [NYTimes Bestsellers API](http://developer.nytimes.com/docs/best_sellers_api).

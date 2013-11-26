@@ -13,5 +13,5 @@ group :test do
   gem 'shoulda-context'
   gem 'webmock'
   gem 'simplecov'
-  gem 'coveralls'
+  gem 'coveralls', require: false
 end
