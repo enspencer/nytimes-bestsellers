@@ -4,8 +4,6 @@ require 'dotenv'
 
 Dotenv.load "../.env"
 
-# client = Bestsellers.configure {|config| config.api_key = "foo"}
-# client.get_list
 module Bestsellers
   class << self
 
