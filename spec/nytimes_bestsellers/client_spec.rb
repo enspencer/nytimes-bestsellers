@@ -37,6 +37,18 @@ describe Bestsellers::List do
 
   end
 
+  describe '#bestseller_lists_overview' do
+    before do
+      stub_request(:get, "http://api.nytimes.com/svc/books/v2/lists/overview?published_date=2011-01-16&api-key=abc123").to_return(body: fixture('overview.json'))
+    end
+
+    it "returns an overview of all lists for a specified date" do
+      list = @client.bestseller_lists_overview(date: '2011-01-16')
+      list = JSON.parse(list.body)
+      expect(a_request(:get, "http://api.nytimes.com/svc/books/v2/lists/overview?published_date=2011-01-16&api-key=abc123")).to have_been_made
+    end
+  end
+
 
 
 end

@@ -49,8 +49,11 @@ it can take optional parameters
 
 2. bestseller_lists_overview()
 
-Returns an overview of Times best-seller lists given a week in YYYY-MM-DD form
+Returns an overview of Times best-seller lists for a single week. Takes an optional parameter of date in YYYY-MM-DD format. If you do not specify a published_date the most recent week's best-seller list will be returned.
+
+`@client.bestseller_lists_overview`
 `@client.bestseller_lists_overview('2012-04-12')`
+
 
 3. search_list(list_name, o = {})
 

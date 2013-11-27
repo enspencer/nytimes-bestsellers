@@ -98,10 +98,8 @@ module Bestsellers
       HTTParty.get(url)
     end
 
-    def bestseller_lists_overview(date, o = {})
-      if o[:date]
-        date = o[:date]
-      end
+    def bestseller_lists_overview(o = {})
+      date = (Date.parse o[:date] || Date.today).strftime('%Y-%m-%e')
 
       HTTParty.get("http://api.nytimes.com/svc/books/v2/lists/overview?published_date=#{date}&api-key=#{api_key}")
     end
