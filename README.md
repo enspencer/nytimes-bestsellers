@@ -2,7 +2,7 @@
 
 # New York Times Bestsellers
 
-A Ruby gem for accessing the [New York Times Bestsellers API](http://developer.nytimes.com/docs/best_sellers_api).
+A Ruby gem for accessing the [New York Times Best Sellers API](http://developer.nytimes.com/docs/best_sellers_api) that gathers data from the [Best Sellers List](http://www.nytimes.com/best-sellers-books/).
 
 ## Install
 
