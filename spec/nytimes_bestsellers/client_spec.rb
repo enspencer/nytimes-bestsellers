@@ -46,6 +46,7 @@ describe Bestsellers::List do
       list = @client.bestseller_lists_overview(date: '2011-01-16')
       list = JSON.parse(list.body)
       expect(a_request(:get, "http://api.nytimes.com/svc/books/v2/lists/overview?published_date=2011-01-16&api-key=abc123")).to have_been_made
+      expect(list['results']['published_date']).to eq "2011-01-16"
     end
   end
 
