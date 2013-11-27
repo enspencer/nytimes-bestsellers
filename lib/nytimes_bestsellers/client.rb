@@ -6,6 +6,7 @@ require_relative 'configuration'
 module Bestsellers
 
   class List
+    # instantiates a list
     include Bestsellers::Configuration
     include HTTParty
 
@@ -14,7 +15,6 @@ module Bestsellers
     end
 
     def get_list(list_name, o = {})
-      # enter a list, optional: enter offset, sort_by, sort_order, response_format
       url = "http://api.nytimes.com/svc/books/v2/lists"
 
       if o[:date]
@@ -41,7 +41,7 @@ module Bestsellers
         url << "&sort-by=#{sort_by}"
       end
 
-      if o[:sort_order] 
+      if o[:sort_order]
         sort_order = o[:sort_order]
         url << "&sort-order=#{sort_order}"
       end
@@ -55,7 +55,6 @@ module Bestsellers
 
       url = "http://api.nytimes.com/svc/books/v2/lists?list-name=#{list_name}"
 
-      # search a list by list_name, optional: bestsellers-date, date, isbn, published-date, rank, rank-last-week, weeks-on-list
       if o[:bestsellers_date]
         bestsellers_date = o[:bestsellers_date]
         url << "&bestsellers-date=#{bestsellers_date}"
@@ -156,12 +155,10 @@ module Bestsellers
     end
 
     def find_list_names
-      # returns all possible lists
       HTTParty.get("http://api.nytimes.com/svc/books/v2/lists/names?api-key=#{api_key}")
     end
 
     def age_groups
-      # returns all possible age groups
       HTTParty.get("http://api.nytimes.com/svc/books/v2/lists/age-groups?api-key=#{api_key}")
     end
 

@@ -1,19 +1,13 @@
 ---
 :cane:
-  :total_violations: 18
+  :total_violations: 16
   :violations:
     :line_style:
-    - :line: lib/nytimes_bestsellers/client.rb:17
-      :description: Line is >80 characters (82)
-    - :line: lib/nytimes_bestsellers/client.rb:44
-      :description: Line contains trailing whitespace
-    - :line: lib/nytimes_bestsellers/client.rb:58
-      :description: Line is >80 characters (127)
-    - :line: lib/nytimes_bestsellers/client.rb:104
+    - :line: lib/nytimes_bestsellers/client.rb:102
       :description: Line is >80 characters (114)
-    - :line: lib/nytimes_bestsellers/client.rb:160
+    - :line: lib/nytimes_bestsellers/client.rb:158
       :description: Line is >80 characters (88)
-    - :line: lib/nytimes_bestsellers/client.rb:165
+    - :line: lib/nytimes_bestsellers/client.rb:163
       :description: Line is >80 characters (93)
     - :line: lib/nytimes_bestsellers.rb:28
       :description: Line contains trailing whitespace
@@ -27,13 +21,15 @@
       :description: Line is >80 characters (154)
     - :line: spec/nytimes_bestsellers/client_spec.rb:41
       :description: Line is >80 characters (167)
-    - :line: spec/nytimes_bestsellers/client_spec.rb:52
-      :description: Line is >80 characters (161)
-    - :line: spec/nytimes_bestsellers/client_spec.rb:58
+    - :line: spec/nytimes_bestsellers/client_spec.rb:47
       :description: Line is >80 characters (142)
-    - :line: spec/nytimes_bestsellers/client_spec.rb:66
+    - :line: spec/nytimes_bestsellers/client_spec.rb:54
+      :description: Line is >80 characters (161)
+    - :line: spec/nytimes_bestsellers/client_spec.rb:60
+      :description: Line is >80 characters (142)
+    - :line: spec/nytimes_bestsellers/client_spec.rb:68
       :description: Line is >80 characters (139)
-    - :line: spec/nytimes_bestsellers/client_spec.rb:72
+    - :line: spec/nytimes_bestsellers/client_spec.rb:74
       :description: Line is >80 characters (118)
     :comment:
     - :line: lib/nytimes_bestsellers/client.rb:8
@@ -43,20 +39,20 @@
 :churn:
   :changes:
   - :file_path: coverage/.resultset.json
-    :times_changed: 11
-  - :file_path: README.md
-    :times_changed: 11
+    :times_changed: 12
   - :file_path: spec/nytimes_bestsellers/client_spec.rb
+    :times_changed: 12
+  - :file_path: README.md
     :times_changed: 11
   - :file_path: lib/nytimes_bestsellers/client.rb
     :times_changed: 10
   :class_churn:
-  - klass: &1
+  - klass:
       file: lib/nytimes_bestsellers/client.rb
       klass: List
     times_changed: 1
   :method_churn:
-  - method: &2
+  - method:
       file: lib/nytimes_bestsellers/client.rb
       klass: List
       method: List#single_history
@@ -64,26 +60,22 @@
   :changed_files:
   - coverage/.last_run.json
   - coverage/.resultset.json
-  - lib/nytimes_bestsellers/client.rb
-  - spec/fixtures/single_history.json
   - spec/nytimes_bestsellers/client_spec.rb
-  :changed_classes:
-  - *1
-  :changed_methods:
-  - *2
+  :changed_classes: []
+  :changed_methods: []
 :flay:
   :total_score: '68'
   :matches:
   - :reason: 1) Similar code found in :if (mass = 68)
     :matches:
     - :name: lib/nytimes_bestsellers/client.rb
-      :line: '123'
+      :line: '121'
     - :name: lib/nytimes_bestsellers/client.rb
-      :line: '128'
+      :line: '126'
     - :name: lib/nytimes_bestsellers/client.rb
-      :line: '133'
+      :line: '131'
     - :name: lib/nytimes_bestsellers/client.rb
-      :line: '138'
+      :line: '136'
 :flog:
   :total: 173.42674227879016
   :average: 10.839171392424385
@@ -106,7 +98,7 @@
           :api_key: 1.3
           :get: 1.1
         :score: 47.45745463043715
-        :path: lib/nytimes_bestsellers/client.rb:107
+        :path: lib/nytimes_bestsellers/client.rb:105
       Bestsellers::List#search_list:
         :operators:
           :assignment: 12.300000000000004
@@ -120,7 +112,7 @@
           :api_key: 1.3
           :get: 1.1
         :score: 39.23187479588504
-        :path: lib/nytimes_bestsellers/client.rb:54
+        :path: lib/nytimes_bestsellers/client.rb:53
       Bestsellers::List#get_list:
         :operators:
           :assignment: 8.700000000000003
@@ -144,7 +136,7 @@
           :api_key: 1.3
           :get: 1.1
         :score: 8.431488599292535
-        :path: lib/nytimes_bestsellers/client.rb:101
+        :path: lib/nytimes_bestsellers/client.rb:99
       Bestsellers::List#none:
         :operators:
           :include: 4.4
@@ -155,13 +147,13 @@
           :api_key: 1.3
           :get: 1.1
         :score: 2.4000000000000004
-        :path: lib/nytimes_bestsellers/client.rb:163
+        :path: lib/nytimes_bestsellers/client.rb:161
       Bestsellers::List#find_list_names:
         :operators:
           :api_key: 1.3
           :get: 1.1
         :score: 2.4000000000000004
-        :path: lib/nytimes_bestsellers/client.rb:158
+        :path: lib/nytimes_bestsellers/client.rb:156
       Bestsellers::List#initialize:
         :operators:
           :reset: 1.1
@@ -263,17 +255,17 @@
       :methods: []
     - :class_name: Bestsellers::List
       :complexity: 27
-      :lines: 160
+      :lines: 158
       :methods:
       - :name: Bestsellers::List#single_history
         :complexity: 9
         :lines: 49
       - :name: Bestsellers::List#search_list
         :complexity: 8
-        :lines: 45
+        :lines: 44
       - :name: Bestsellers::List#get_list
         :complexity: 6
-        :lines: 36
+        :lines: 35
       - :name: Bestsellers::List#bestseller_lists_overview
         :complexity: 1
         :lines: 4
@@ -335,17 +327,17 @@
   :classes:
   - :name: Bestsellers::List
     :complexity: 27
-    :lines: 160
+    :lines: 158
     :defs:
     - :name: Bestsellers::List#initialize
       :complexity: 1
       :lines: 2
     - :name: Bestsellers::List#get_list
       :complexity: 6
-      :lines: 36
+      :lines: 35
     - :name: Bestsellers::List#search_list
       :complexity: 8
-      :lines: 45
+      :lines: 44
     - :name: Bestsellers::List#bestseller_lists_overview
       :complexity: 1
       :lines: 4
@@ -402,10 +394,10 @@
     :lines: 49
   - :name: Bestsellers::List#search_list
     :complexity: 8
-    :lines: 45
+    :lines: 44
   - :name: Bestsellers::List#get_list
     :complexity: 6
-    :lines: 36
+    :lines: 35
   - :name: Bestsellers::#method_missing
     :complexity: 2
     :lines: 3
@@ -562,51 +554,51 @@
     :line: 
     :problem: 
   - :file: "\e[31mlib/nytimes_bestsellers/client.rb"
-    :line: '54'
+    :line: '53'
     :problem: "Method name \"search_list\" cyclomatic complexity is 9.  It should
       be 8 or less.\e[0m"
   - :file: "\e[31mlib/nytimes_bestsellers/client.rb"
-    :line: '107'
+    :line: '105'
     :problem: "Method name \"single_history\" cyclomatic complexity is 9.  It should
       be 8 or less.\e[0m"
   - :file: "\e[31mlib/nytimes_bestsellers/client.rb"
     :line: '16'
-    :problem: "Method \"get_list\" has 35 lines.  It should have 20 or less.\e[0m"
+    :problem: "Method \"get_list\" has 34 lines.  It should have 20 or less.\e[0m"
   - :file: "\e[31mlib/nytimes_bestsellers/client.rb"
-    :line: '54'
-    :problem: "Method \"search_list\" has 44 lines.  It should have 20 or less.\e[0m"
+    :line: '53'
+    :problem: "Method \"search_list\" has 43 lines.  It should have 20 or less.\e[0m"
   - :file: "\e[31mlib/nytimes_bestsellers/client.rb"
-    :line: '107'
+    :line: '105'
     :problem: "Method \"single_history\" has 48 lines.  It should have 20 or less.\e[0m"
 :stats:
   :codeLOC: 156
-  :testLOC: 170
+  :testLOC: 174
   :code_to_test_ratio: 1.1
   :lines:
   - :name: Libraries
-    :lines: 222
+    :lines: 220
     :loc: 156
     :classes: 1
     :methods: 12
     :methods_per_class: 12
     :loc_per_method: 11
   - :name: Nytimes_bestsellers specs
-    :lines: 81
-    :loc: 65
+    :lines: 83
+    :loc: 67
     :classes: 0
     :methods: 0
     :methods_per_class: 0
     :loc_per_method: 0
   - :name: Uncategorized specs
-    :lines: 130
-    :loc: 105
+    :lines: 132
+    :loc: 107
     :classes: 0
     :methods: 2
     :methods_per_class: 0
-    :loc_per_method: 50
+    :loc_per_method: 51
   - :name: Total
-    :lines: 433
-    :loc: 326
+    :lines: 435
+    :loc: 330
     :classes: 1
     :methods: 14
     :methods_per_class: 14
@@ -616,20 +608,20 @@
   - location:
       class_name: 
       method_name: 
-      file_path: lib/nytimes_bestsellers/client.rb:107
+      file_path: lib/nytimes_bestsellers/client.rb:105
       file_name: lib/nytimes_bestsellers/client.rb
-      line_number: '107'
-      hash_key: '["lib/nytimes_bestsellers/client.rb:107", nil, nil]'
+      line_number: '105'
+      hash_key: '["lib/nytimes_bestsellers/client.rb:105", nil, nil]'
     details:
       flog: complexity is 47.5
       saikuro: complexity is 9.0
   - location:
       class_name: 
       method_name: 
-      file_path: lib/nytimes_bestsellers/client.rb:54
+      file_path: lib/nytimes_bestsellers/client.rb:53
       file_name: lib/nytimes_bestsellers/client.rb
-      line_number: '54'
-      hash_key: '["lib/nytimes_bestsellers/client.rb:54", nil, nil]'
+      line_number: '53'
+      hash_key: '["lib/nytimes_bestsellers/client.rb:53", nil, nil]'
     details:
       flog: complexity is 39.2
       saikuro: complexity is 8.0
@@ -656,10 +648,10 @@
   - location:
       class_name: 
       method_name: 
-      file_path: lib/nytimes_bestsellers/client.rb:101
+      file_path: lib/nytimes_bestsellers/client.rb:99
       file_name: lib/nytimes_bestsellers/client.rb
-      line_number: '101'
-      hash_key: '["lib/nytimes_bestsellers/client.rb:101", nil, nil]'
+      line_number: '99'
+      hash_key: '["lib/nytimes_bestsellers/client.rb:99", nil, nil]'
     details:
       flog: complexity is 8.4
       saikuro: complexity is 1.0
@@ -675,20 +667,20 @@
   - location:
       class_name: 
       method_name: 
-      file_path: lib/nytimes_bestsellers/client.rb:158
+      file_path: lib/nytimes_bestsellers/client.rb:156
       file_name: lib/nytimes_bestsellers/client.rb
-      line_number: '158'
-      hash_key: '["lib/nytimes_bestsellers/client.rb:158", nil, nil]'
+      line_number: '156'
+      hash_key: '["lib/nytimes_bestsellers/client.rb:156", nil, nil]'
     details:
       flog: complexity is 2.4
       saikuro: complexity is 1.0
   - location:
       class_name: 
       method_name: 
-      file_path: lib/nytimes_bestsellers/client.rb:163
+      file_path: lib/nytimes_bestsellers/client.rb:161
       file_name: lib/nytimes_bestsellers/client.rb
-      line_number: '163'
-      hash_key: '["lib/nytimes_bestsellers/client.rb:163", nil, nil]'
+      line_number: '161'
+      hash_key: '["lib/nytimes_bestsellers/client.rb:161", nil, nil]'
     details:
       flog: complexity is 2.4
       saikuro: complexity is 1.0
@@ -750,16 +742,7 @@
       line_number: 
       hash_key: '["coverage/.resultset.json", nil, nil]'
     details:
-      churn: detected high level of churn (changed 11 times)
-  - location:
-      class_name: 
-      method_name: 
-      file_path: spec/nytimes_bestsellers/client_spec.rb
-      file_name: spec/nytimes_bestsellers/client_spec.rb
-      line_number: 
-      hash_key: '["spec/nytimes_bestsellers/client_spec.rb", nil, nil]'
-    details:
-      churn: detected high level of churn (changed 11 times)
+      churn: detected high level of churn (changed 12 times)
   - location:
       class_name: 
       method_name: 
@@ -769,6 +752,15 @@
       hash_key: '["README.md", nil, nil]'
     details:
       churn: detected high level of churn (changed 11 times)
+  - location:
+      class_name: 
+      method_name: 
+      file_path: spec/nytimes_bestsellers/client_spec.rb
+      file_name: spec/nytimes_bestsellers/client_spec.rb
+      line_number: 
+      hash_key: '["spec/nytimes_bestsellers/client_spec.rb", nil, nil]'
+    details:
+      churn: detected high level of churn (changed 12 times)
   - location:
       class_name: 
       method_name: 
@@ -800,10 +792,10 @@
   - location:
       class_name: List
       method_name: 
-      file_path: lib/nytimes_bestsellers/client.rb:107
+      file_path: lib/nytimes_bestsellers/client.rb:105
       file_name: lib/nytimes_bestsellers/client.rb
-      line_number: '107'
-      hash_key: '["lib/nytimes_bestsellers/client.rb:107", "List", nil]'
+      line_number: '105'
+      hash_key: '["lib/nytimes_bestsellers/client.rb:105", "List", nil]'
     details:
       flog: average complexity is 17.0
       reek: found 36 code smells
@@ -850,10 +842,10 @@
   - location:
       class_name: List
       method_name: List#single_history
-      file_path: lib/nytimes_bestsellers/client.rb:107
+      file_path: lib/nytimes_bestsellers/client.rb:105
       file_name: lib/nytimes_bestsellers/client.rb
-      line_number: '107'
-      hash_key: '["lib/nytimes_bestsellers/client.rb:107", "List", "List#single_history"]'
+      line_number: '105'
+      hash_key: '["lib/nytimes_bestsellers/client.rb:105", "List", "List#single_history"]'
       simple_method_name: '#single_history'
     details:
       flog: complexity is 47.5
@@ -862,10 +854,10 @@
   - location:
       class_name: List
       method_name: List#search_list
-      file_path: lib/nytimes_bestsellers/client.rb:54
+      file_path: lib/nytimes_bestsellers/client.rb:53
       file_name: lib/nytimes_bestsellers/client.rb
-      line_number: '54'
-      hash_key: '["lib/nytimes_bestsellers/client.rb:54", "List", "List#search_list"]'
+      line_number: '53'
+      hash_key: '["lib/nytimes_bestsellers/client.rb:53", "List", "List#search_list"]'
       simple_method_name: '#search_list'
     details:
       flog: complexity is 39.2
@@ -896,10 +888,10 @@
   - location:
       class_name: List
       method_name: List#bestseller_lists_overview
-      file_path: lib/nytimes_bestsellers/client.rb:101
+      file_path: lib/nytimes_bestsellers/client.rb:99
       file_name: lib/nytimes_bestsellers/client.rb
-      line_number: '101'
-      hash_key: '["lib/nytimes_bestsellers/client.rb:101", "List", "List#bestseller_lists_overview"]'
+      line_number: '99'
+      hash_key: '["lib/nytimes_bestsellers/client.rb:99", "List", "List#bestseller_lists_overview"]'
       simple_method_name: '#bestseller_lists_overview'
     details:
       flog: complexity is 8.4
@@ -949,10 +941,10 @@
   - location:
       class_name: List
       method_name: List#age_groups
-      file_path: lib/nytimes_bestsellers/client.rb:163
+      file_path: lib/nytimes_bestsellers/client.rb:161
       file_name: lib/nytimes_bestsellers/client.rb
-      line_number: '163'
-      hash_key: '["lib/nytimes_bestsellers/client.rb:163", "List", "List#age_groups"]'
+      line_number: '161'
+      hash_key: '["lib/nytimes_bestsellers/client.rb:161", "List", "List#age_groups"]'
       simple_method_name: '#age_groups'
     details:
       flog: complexity is 2.4
@@ -960,10 +952,10 @@
   - location:
       class_name: List
       method_name: List#find_list_names
-      file_path: lib/nytimes_bestsellers/client.rb:158
+      file_path: lib/nytimes_bestsellers/client.rb:156
       file_name: lib/nytimes_bestsellers/client.rb
-      line_number: '158'
-      hash_key: '["lib/nytimes_bestsellers/client.rb:158", "List", "List#find_list_names"]'
+      line_number: '156'
+      hash_key: '["lib/nytimes_bestsellers/client.rb:156", "List", "List#find_list_names"]'
       simple_method_name: '#find_list_names'
     details:
       flog: complexity is 2.4

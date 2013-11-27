@@ -1,5 +1,6 @@
 module Bestsellers
   module Configuration
+    # configures the client
     attr_accessor :api_key
 
     def configure

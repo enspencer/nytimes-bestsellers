@@ -23,14 +23,3 @@ module Bestsellers
     end
   end
 end
-
-# @client = Bestsellers.new
-# @client.configure do |config|  
-#   config.api_key = ENV['API_KEY']
-# end
-
-
-
-# results = @client.get_list('hardcover-fiction')
-
-# puts @client.single_history(title: 'lean in')

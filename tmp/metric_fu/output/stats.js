@@ -7,6 +7,6 @@
 
         g.title = 'Stats: LOC & LOT';
         g.data('LOC', [156]);
-g.data('LOT', [170]);
+g.data('LOT', [174]);
         g.labels = {"0":"11/27"};
         g.draw();
