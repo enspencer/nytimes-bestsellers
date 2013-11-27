@@ -76,7 +76,6 @@ describe Bestsellers::List do
   end
 
   describe '#age_groups' do
-
     before do
       stub_request(:get, "http://api.nytimes.com/svc/books/v2/lists/age-groups?api-key=abc123").to_return(body: fixture('age_groups.json'))
     end
@@ -87,6 +86,20 @@ describe Bestsellers::List do
       expect(a_request(:get, "http://api.nytimes.com/svc/books/v2/lists/age-groups?api-key=abc123")).to have_been_made
       expect(list['results'][0]['age_group']).to eq "Ages 1 to 5"
       expect(list['results'][3]['age_group']).to eq "Ages 10 to 14"
+    end
+  end
+
+  describe '#find_list_names' do
+    before do
+      stub_request(:get, "http://api.nytimes.com/svc/books/v2/lists/names?api-key=abc123").to_return(body: fixture('list_names.json'))
+    end
+
+    it "returns all the names of bestseller lists" do
+      list = @client.find_list_names
+      list = JSON.parse(list.body)
+      expect(a_request(:get, "http://api.nytimes.com/svc/books/v2/lists/names?api-key=abc123")).to have_been_made
+      expect(list['results'][0]['list_name']).to eq "Combined Print and E-Book Fiction"
+      expect(list['results'][3]['list_name']).to eq "Hardcover Nonfiction"
     end
   end
 
