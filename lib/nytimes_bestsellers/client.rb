@@ -10,7 +10,8 @@ module Bestsellers
     include Bestsellers::Configuration
     include HTTParty
 
-    BOOKS_URL= "http://api.nytimes.com/svc/books/v2/lists"
+    BOOKS_URL = "http://api.nytimes.com/svc/books/v2/lists"
+    BOOKS_URL
 
     def initialize
       reset
@@ -19,12 +20,10 @@ module Bestsellers
     def set_urlparam(url, name, options)
       return unless options[name]
       url << "&#{name.to_s.gsub('_','-')}=#{options[name]}"
-
-      # url << "&bestsellers-date=#{bestsellers_date}"
      end
 
     def get_list(list_name, o = {})
-      url = BOOKS_URL
+      url = BOOKS_URL.clone
 
       if o[:date]
         date = o[:date]
@@ -62,7 +61,7 @@ module Bestsellers
 
     def search_list(list_name, o = {})
 
-      url = BOOKS_URL + "?list-name=#{list_name}"
+      url = BOOKS_URL.clone + "?list-name=#{list_name}"
 
       date = if o[:date]
         Date.parse(o[:date]) 
@@ -106,6 +105,7 @@ module Bestsellers
 
       if o[:response_format]
         response_format = '.' + o[:response_format]
+        url << "#{response_format}"
       end
 
       url << "&api-key=#{api_key}"
@@ -121,7 +121,7 @@ module Bestsellers
 
     def single_history(o = {})
 
-      url = BOOKS_URL + "/best-sellers/history"
+      url = BOOKS_URL.clone + "/best-sellers/history"
 
       if o[:response_format]
         response_format = '.' + o[:response_format]

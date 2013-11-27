@@ -36,17 +36,16 @@ describe Bestsellers::List do
 
   end
 
-  describe '#booksellers' do
-    module HTTParty
-      def self.get(url)
-        url
-      end
+  describe '#search_list' do
+
+    before do
+      stub_request(:get, "http://api.nytimes.com/svc/books/v2/lists?list-name=hardcover-nonfiction&date=2013-11-27&published-date=2013-11-27&api-key=abc123").to_return(body: fixture('published_search.json'))
     end
    
    it "should search from published_date" do
     today = Date.today
-     myurl = @client.search_list('hardcover-nonfiction', published_date: "#{today}")
-     expect(myurl).to eq("http://api.nytimes.com/svc/books/v2/lists?list-name=hardcover-nonfiction&date=2013-11-27&published-date=2013-11-27&api-key=abc123")
+     list = @client.search_list('hardcover-nonfiction', published_date: "#{today}")
+     expect(a_request(:get, "http://api.nytimes.com/svc/books/v2/lists?list-name=hardcover-nonfiction&date=2013-11-27&published-date=2013-11-27&api-key=abc123")).to have_been_made
    end
   end
 
