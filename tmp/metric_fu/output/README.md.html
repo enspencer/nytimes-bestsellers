@@ -1,0 +1,418 @@
+        <html><head><style>
+          table { background: #fff; color: #000; }
+.ruby .normal { color: #000; }
+.ruby .comment { color: #005; font-style: italic; }
+.ruby .keyword { color: #A44; font-weight: bold; }
+.ruby .method { color: #44f; }
+.ruby .class { color: #b1713d; }
+.ruby .module { color: #050; }
+.ruby .punct { color: #668; font-weight: bold; }
+.ruby .symbol { color: #00f; }
+.ruby .string { color: #4a4; }
+.ruby .char { color: #F07; }
+.ruby .ident { color: #000; }
+.ruby .constant { color: #b1713d; }
+.ruby .regex { color: #B66; background: #FEF; }
+.ruby .number { color: #F99; }
+.ruby .attribute { color: #f84; }
+.ruby .global { color: #7FB; }
+.ruby .expr { color: #227; }
+.ruby .escape { color: #277; }
+          .bluff-tooltip {
+	background: #fff;
+	border: 1px solid #d1edf5;
+	padding: 8px 8px 6px;
+}
+.bluff-tooltip .color {
+	display: block;
+	height: 4px;
+	width: 30px;
+	margin: 0 0 4px;
+	overflow: hidden;
+}
+.bluff-tooltip .data {
+	font-weight: bold;
+}
+
+          
+        </style></head><body>
+<table cellpadding='0' cellspacing='0' class='ruby'><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>[![<span class="constant">Build</span> <span class="constant">Status</span>](<span class="key">https</span>:<span class="regexp"><span class="delimiter">/</span><span class="delimiter">/</span></span>travis-ci.org/enspencer/nytimes-bestsellers.png?branch=master)](<span class="key">https</span>:<span class="regexp"><span class="delimiter">/</span><span class="delimiter">/</span></span>travis-ci.org/enspencer/nytimes-bestsellers) [![<span class="constant">Coverage</span> <span class="constant">Status</span>](<span class="key">https</span>:<span class="regexp"><span class="delimiter">/</span><span class="delimiter">/</span></span>coveralls.io/repos/enspencer/nytimes-bestsellers/badge.png)](<span class="key">https</span>:<span class="regexp"><span class="delimiter">/</span><span class="delimiter">/</span></span>coveralls.io/r/enspencer/nytimes-bestsellers)
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n2" name="n2">2</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n3" name="n3">3</a></span><span class="comment"># New York Times Bestsellers</span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n4" name="n4">4</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n5" name="n5">5</a></span><span class="constant">This</span> is a <span class="constant">Ruby</span> wrapper <span class="keyword">for</span> the [<span class="constant">NYTimes</span> <span class="constant">Bestsellers</span> <span class="constant">API</span>](<span class="key">http</span>:<span class="regexp"><span class="delimiter">/</span><span class="delimiter">/</span></span>developer.nytimes.com/docs/best_sellers_api).
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n6" name="n6">6</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n7" name="n7">7</a></span><span class="comment">## Install</span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n8" name="n8">8</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n9" name="n9">9</a></span><span class="constant">Add</span> this line to your application<span class="string"><span class="delimiter">'</span><span class="content">s Gemfile:</span></span>
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span><span class="string"><span class="content"></span></span></pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n11" name="n11">11</a></span>    gem <span class="string"><span class="delimiter">'</span><span class="content">nytimes-bestsellers</span><span class="delimiter">'</span></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n12" name="n12">12</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n13" name="n13">13</a></span><span class="constant">And</span> <span class="keyword">then</span> <span class="key">execute</span>:
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n14" name="n14">14</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n15" name="n15">15</a></span>    <span class="error">$</span> bundle
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n16" name="n16">16</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n17" name="n17">17</a></span><span class="constant">Or</span> install it yourself <span class="key">as</span>:
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n18" name="n18">18</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n19" name="n19">19</a></span>    <span class="error">$</span> gem install nytimes-bestsellers
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n21" name="n21">21</a></span><span class="comment">## Getting Started</span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n22" name="n22">22</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n23" name="n23">23</a></span><span class="constant">You</span><span class="string"><span class="delimiter">'</span><span class="content">ll want to sign up for an [API key](http://developer.nytimes.com/apps/register) to start.</span></span>
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span><span class="string"><span class="content"></span></span></pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n24" name="n24">24</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n25" name="n25">25</a></span><span class="constant">Setup</span> a new <span class="key">instance</span>:
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n26" name="n26">26</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n27" name="n27">27</a></span><span class="shell"><span class="delimiter">`</span><span class="delimiter">`</span></span><span class="shell"><span class="delimiter">`</span><span class="content">ruby</span></span>
+<span class="line-numbers"><a href="#n28" name="n28">28</a></span><span class="shell"><span class="content"></span></span></pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n28" name="n28">28</a></span><span class="instance-variable">@client</span> = <span class="constant">Bestsellers</span>.new
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n29" name="n29">29</a></span><span class="instance-variable">@client</span>.configure <span class="keyword">do</span> |config|  
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>  config.api_key = <span class="string"><span class="delimiter">&quot;</span><span class="content">YOUR_API_KEY</span><span class="delimiter">&quot;</span></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n31" name="n31">31</a></span><span class="keyword">end</span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n32" name="n32">32</a></span><span class="shell"><span class="delimiter">`</span><span class="delimiter">`</span></span><span class="shell"><span class="delimiter">`</span><span class="content"></span></span>
+<span class="line-numbers"><a href="#n33" name="n33">33</a></span><span class="shell"><span class="content"></span></span></pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n33" name="n33">33</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n34" name="n34">34</a></span><span class="comment">## Methods</span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n35" name="n35">35</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n36" name="n36">36</a></span><span class="constant">Five</span> requests are <span class="key">available</span>: get a best-seller list, search best-seller lists, get the history of a best seller, get an overview of all of the best-seller lists <span class="keyword">for</span> a given week <span class="keyword">and</span> get the names of <span class="constant">Times</span> best-seller lists.
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n37" name="n37">37</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n38" name="n38">38</a></span><span class="integer">1</span>. get_list(list_name, o = {})
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n39" name="n39">39</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span><span class="constant">This</span> method has a required parameter of list name(see lists below <span class="keyword">or</span> call the find_list_names method to find them <span class="keyword">for</span> yourself) <span class="keyword">and</span> takes an optional parameter of date, as a string <span class="keyword">in</span> <span class="constant">YYYY</span>-<span class="constant">MM</span>-<span class="constant">DD</span> format. It also takes an optional parameter of response format <span class="keyword">and</span> <span class="keyword">if</span> none is specified it defaults to json.
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n41" name="n41">41</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n42" name="n42">42</a></span>with no optional parameters it gets the most recent list
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n43" name="n43">43</a></span><span class="shell"><span class="delimiter">`</span><span class="content">@client.get_list('hardcover-nonfiction')</span><span class="delimiter">`</span></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n44" name="n44">44</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n45" name="n45">45</a></span>it can take optional parameters
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n46" name="n46">46</a></span><span class="shell"><span class="delimiter">`</span><span class="content">@client.get_list('hardcover-nonfiction', date: '2012-04-12', response: 'xml')</span><span class="delimiter">`</span></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n47" name="n47">47</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n48" name="n48">48</a></span><span class="integer">2</span>. bestseller_lists_overview()
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n49" name="n49">49</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n50" name="n50">50</a></strong></span><span class="constant">Returns</span> an overview of <span class="constant">Times</span> best-seller lists <span class="keyword">for</span> a single week. Takes an optional parameter of date <span class="keyword">in</span> <span class="constant">YYYY</span>-<span class="constant">MM</span>-<span class="constant">DD</span> format. If you <span class="keyword">do</span> <span class="keyword">not</span> specify a published_date the most recent week<span class="string"><span class="delimiter">'</span><span class="content">s best-seller list will be returned.</span></span>
+<span class="line-numbers"><a href="#n51" name="n51">51</a></span><span class="string"><span class="content"></span></span></pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n51" name="n51">51</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n52" name="n52">52</a></span><span class="shell"><span class="delimiter">`</span><span class="content">@client.bestseller_lists_overview</span><span class="delimiter">`</span></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n53" name="n53">53</a></span><span class="shell"><span class="delimiter">`</span><span class="content">@client.bestseller_lists_overview(date: '2012-04-12')</span><span class="delimiter">`</span></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n54" name="n54">54</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n55" name="n55">55</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n56" name="n56">56</a></span><span class="integer">3</span>. search_list(list_name, o = {})
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n57" name="n57">57</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n58" name="n58">58</a></span><span class="constant">Allows</span> <span class="keyword">for</span> a filtered search of a specific list. Optional parameters are date, isbn, published_date, rank, rank_last_week, <span class="keyword">and</span> weeks_on_list.
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n59" name="n59">59</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n60" name="n60">60</a></strong></span><span class="integer">4</span>. single_history
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n61" name="n61">61</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n62" name="n62">62</a></span><span class="integer">5</span>. find_list_names
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n63" name="n63">63</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n64" name="n64">64</a></span><span class="constant">This</span> method takes no parameters <span class="keyword">and</span> returns all available list names which you can use to query the get_list method.
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n65" name="n65">65</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n66" name="n66">66</a></span><span class="integer">6</span>. age_groups
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n67" name="n67">67</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n68" name="n68">68</a></span><span class="constant">This</span> method takes no parameters <span class="keyword">and</span> returns all available age groups which you can use to query the single_history method. In most cases the age group will be null, so it<span class="string"><span class="delimiter">'</span><span class="content">s not a great search method on the data. I</span><span class="delimiter">'</span></span>ve listen the age groups below but you can see these available age groups <span class="keyword">for</span> yourself using the <span class="shell"><span class="delimiter">`</span><span class="content">age_groups</span><span class="delimiter">`</span></span> method.
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n69" name="n69">69</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n70" name="n70">70</a></strong></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n71" name="n71">71</a></span><span class="comment">## Lists</span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n72" name="n72">72</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n73" name="n73">73</a></span><span class="constant">The</span> list names to search from <span class="key">are</span>:
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n74" name="n74">74</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n75" name="n75">75</a></span><span class="constant">Combined</span> <span class="constant">Print</span> <span class="keyword">and</span> <span class="constant">E</span>-<span class="constant">Book</span> <span class="constant">Fiction</span>, <span class="constant">Combined</span> <span class="constant">Print</span> <span class="keyword">and</span> <span class="constant">E</span>-<span class="constant">Book</span> <span class="constant">Nonfiction</span>, <span class="constant">Hardcover</span> <span class="constant">Fiction</span>, <span class="constant">Hardcover</span> <span class="constant">Nonfiction</span>, <span class="constant">Trade</span> <span class="constant">Fiction</span> <span class="constant">Paperback</span>, <span class="constant">Mass</span> <span class="constant">Market</span> <span class="constant">Paperback</span>, <span class="constant">Paperback</span> <span class="constant">Nonfiction</span>, <span class="constant">E</span>-<span class="constant">Book</span> <span class="constant">Fiction</span>, <span class="constant">E</span>-<span class="constant">Book</span> <span class="constant">Nonfiction</span>, <span class="constant">Hardcover</span> <span class="constant">Advice</span>, <span class="constant">Paperback</span> <span class="constant">Advice</span>, <span class="constant">Advice</span> <span class="constant">How</span>-<span class="constant">To</span> <span class="keyword">and</span> <span class="constant">Miscellaneous</span>, <span class="constant">Picture</span> <span class="constant">Books</span>, <span class="constant">Chapter</span> <span class="constant">Books</span>, <span class="constant">Childrens</span> <span class="constant">Middle</span> <span class="constant">Grade</span>, <span class="constant">Young</span> <span class="constant">Adult</span>, <span class="constant">Paperback</span> <span class="constant">Books</span>, <span class="constant">Series</span> <span class="constant">Books</span>, <span class="constant">Hardcover</span> <span class="constant">Graphic</span> <span class="constant">Books</span>, <span class="constant">Paperback</span> <span class="constant">Graphic</span> <span class="constant">Books</span>, <span class="constant">Manga</span>, <span class="constant">Combined</span> <span class="constant">Print</span> <span class="constant">Fiction</span>, <span class="constant">Combined</span> <span class="constant">Print</span> <span class="constant">Nonfiction</span>, <span class="constant">Hardcover</span> <span class="constant">Business</span> <span class="constant">Books</span>, <span class="constant">Paperback</span> <span class="constant">Business</span> <span class="constant">Books</span>, <span class="constant">Business</span> <span class="constant">Books</span>, <span class="constant">Hardcover</span> <span class="constant">Political</span> <span class="constant">Books</span>, <span class="constant">Science</span> <span class="constant">Times</span>, <span class="constant">Dining</span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n76" name="n76">76</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n77" name="n77">77</a></span><span class="constant">When</span> passing these names as paraemeters replace spaces with hyphens. The parameter is <span class="keyword">not</span> <span class="keyword">case</span> sensitive.
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n78" name="n78">78</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n79" name="n79">79</a></span><span class="comment">## Age Groups</span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n80" name="n80">80</a></strong></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n81" name="n81">81</a></span><span class="constant">The</span> age group parameter can be used as an optional parameter <span class="keyword">in</span> the <span class="shell"><span class="delimiter">`</span><span class="content">single_history</span><span class="delimiter">`</span></span> method. In most cases the age group will be null, so it<span class="string"><span class="delimiter">'</span><span class="content">s not a great search method on the data. But you can use the age groups below to search, or see these available age groups for yourself using the `age_groups` method.</span></span>
+<span class="line-numbers"><a href="#n82" name="n82">82</a></span><span class="string"><span class="content"></span></span></pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n82" name="n82">82</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n83" name="n83">83</a></span><span class="constant">Valid</span> age <span class="key">groups</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 1 to 5</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 10 and up</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 10 to 13</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 10 to 14</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 10 to 15</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 10 to 18</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 11 and up</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 11 to 14</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 11 to 15</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 12 and  up</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 12 and up</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 12 to 14</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 12 to 17</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 12 to 18</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 13 and up</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 13 to 16</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 13 to 17</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 13 to 18</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 14 and up</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 14 to 17</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 14 to 18</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 15 and up</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 15 to 17</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 15 to 18</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 16 and up</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 17 and up</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 18 and up</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 2 and up</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 2 to 5</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 2 to 6</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 2 to 7</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 3 and up</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 3 to 5</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 3 to 6</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 3 to 7</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Ages 3 to 8, </span><span class="delimiter">&quot;</span></span><span class="constant">Ages</span> <span class="integer">4</span> <span class="keyword">and</span> up<span class="string"><span class="delimiter">&quot;</span><span class="content">, </span><span class="delimiter">&quot;</span></span><span class="constant">Ages</span> <span class="integer">4</span> to <span class="integer">7</span><span class="string"><span class="delimiter">&quot;</span><span class="content">, </span><span class="delimiter">&quot;</span></span><span class="constant">Ages</span> <span class="integer">4</span> to <span class="integer">8</span><span class="string"><span class="delimiter">&quot;</span><span class="content">, </span><span class="delimiter">&quot;</span></span><span class="constant">Ages</span> <span class="integer">5</span> <span class="keyword">and</span> up<span class="string"><span class="delimiter">&quot;</span><span class="content">, </span><span class="delimiter">&quot;</span></span><span class="constant">Ages</span> <span class="integer">5</span> to <span class="integer">10</span><span class="string"><span class="delimiter">&quot;</span><span class="content">}, </span><span class="delimiter">&quot;</span></span><span class="constant">Ages</span> <span class="integer">5</span> to <span class="integer">7</span><span class="string"><span class="delimiter">&quot;</span><span class="content">, </span><span class="delimiter">&quot;</span></span><span class="constant">Ages</span> <span class="integer">5</span> to <span class="integer">8</span><span class="string"><span class="delimiter">&quot;</span><span class="content">, </span><span class="delimiter">&quot;</span></span><span class="constant">Ages</span> <span class="integer">5</span> to <span class="integer">9</span><span class="string"><span class="delimiter">&quot;</span><span class="content">, </span><span class="delimiter">&quot;</span></span><span class="constant">Ages</span> <span class="integer">6</span> <span class="keyword">and</span> up<span class="string"><span class="delimiter">&quot;</span><span class="content">, </span><span class="delimiter">&quot;</span></span><span class="constant">Ages</span> <span class="integer">6</span> to <span class="integer">10</span><span class="string"><span class="delimiter">&quot;</span><span class="content">}, </span><span class="delimiter">&quot;</span></span><span class="constant">Ages</span> <span class="integer">6</span> to <span class="integer">12</span><span class="string"><span class="delimiter">&quot;</span><span class="content">}, </span><span class="delimiter">&quot;</span></span><span class="constant">Ages</span> <span class="integer">6</span> to <span class="integer">14</span><span class="string"><span class="delimiter">&quot;</span><span class="content">, </span><span class="delimiter">&quot;</span></span><span class="constant">Ages</span> <span class="integer">6</span> to <span class="integer">8</span><span class="string"><span class="delimiter">&quot;</span><span class="content">, </span><span class="delimiter">&quot;</span></span><span class="constant">Ages</span> <span class="integer">6</span> to <span class="integer">9</span><span class="string"><span class="delimiter">&quot;</span><span class="content">, </span><span class="delimiter">&quot;</span></span><span class="constant">Ages</span> <span class="integer">7</span> <span class="keyword">and</span> up<span class="string"><span class="delimiter">&quot;</span><span class="content">, </span><span class="delimiter">&quot;</span></span><span class="constant">Ages</span> <span class="integer">7</span> to <span class="integer">10</span><span class="string"><span class="delimiter">&quot;</span><span class="content">, </span><span class="delimiter">&quot;</span></span><span class="constant">Ages</span> <span class="integer">7</span> to <span class="integer">12</span><span class="string"><span class="delimiter">&quot;</span><span class="content">, </span><span class="delimiter">&quot;</span></span><span class="constant">Ages</span> <span class="integer">7</span> to <span class="integer">17</span><span class="string"><span class="delimiter">&quot;</span><span class="content">, </span><span class="delimiter">&quot;</span></span><span class="constant">Ages</span> <span class="integer">7</span> to <span class="integer">9</span><span class="string"><span class="delimiter">&quot;</span><span class="content">, </span><span class="delimiter">&quot;</span></span><span class="constant">Ages</span> <span class="integer">8</span> <span class="keyword">and</span> up<span class="string"><span class="delimiter">&quot;</span><span class="content">, </span><span class="delimiter">&quot;</span></span><span class="constant">Ages</span> <span class="integer">8</span> to <span class="integer">12</span><span class="string"><span class="delimiter">&quot;</span><span class="content">, </span><span class="delimiter">&quot;</span></span><span class="constant">Ages</span> <span class="integer">8</span> to <span class="integer">14</span><span class="string"><span class="delimiter">&quot;</span><span class="content">, </span><span class="delimiter">&quot;</span></span><span class="constant">Ages</span> <span class="integer">9</span> <span class="keyword">and</span> up<span class="string"><span class="delimiter">&quot;</span><span class="content">, </span><span class="delimiter">&quot;</span></span><span class="constant">Ages</span> <span class="integer">9</span> to <span class="integer">11</span><span class="string"><span class="delimiter">&quot;</span><span class="content">, </span><span class="delimiter">&quot;</span></span><span class="constant">Ages</span> <span class="integer">9</span> to <span class="integer">12</span><span class="string"><span class="delimiter">&quot;</span><span class="content">, </span><span class="delimiter">&quot;</span></span><span class="constant">Ages</span> <span class="integer">9</span> to <span class="integer">13</span><span class="string"><span class="delimiter">&quot;</span><span class="content">, </span><span class="delimiter">&quot;</span></span><span class="constant">All</span> ages<span class="string"><span class="delimiter">&quot;</span><span class="content"></span></span>
+<span class="line-numbers"><a href="#n84" name="n84">84</a></span><span class="string"><span class="content"></span></span></pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n84" name="n84">84</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n85" name="n85">85</a></span><span class="comment">## Contributing</span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n86" name="n86">86</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n87" name="n87">87</a></span><span class="integer">1</span>. Fork it
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n88" name="n88">88</a></span><span class="integer">2</span>. Create your feature branch (<span class="shell"><span class="delimiter">`</span><span class="content">git checkout -b feature</span><span class="delimiter">`</span></span>)
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n89" name="n89">89</a></span><span class="integer">3</span>. Commit your changes (<span class="shell"><span class="delimiter">`</span><span class="content">git commit -m 'Add this feature'</span><span class="delimiter">`</span></span>)
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n90" name="n90">90</a></strong></span><span class="integer">4</span>. Push to the branch (<span class="shell"><span class="delimiter">`</span><span class="content">git push origin feature</span><span class="delimiter">`</span></span>)
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n91" name="n91">91</a></span><span class="integer">5</span>. Create new <span class="constant">Pull</span> <span class="constant">Request</span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n92" name="n92">92</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n93" name="n93">93</a></span><span class="comment">## License</span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n94" name="n94">94</a></span>
+</pre></div>
+</div>
+</td></tr><tr><td valign='top'>&nbsp;</td><td valign='top'><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n95" name="n95">95</a></span><span class="constant">Copyright</span>  <span class="integer">2013</span> <span class="constant">Emma</span> <span class="constant">Spencer</span>. See <span class="constant">LICENSE</span>.txt <span class="keyword">for</span> further details.</pre></div>
+</div>
+</td></tr><table></body></html>
