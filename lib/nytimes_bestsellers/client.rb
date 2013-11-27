@@ -142,10 +142,12 @@ module Bestsellers
     end
 
     def find_list_names
+      # returns all possible lists
       HTTParty.get("http://api.nytimes.com/svc/books/v2/lists/names?api-key=#{api_key}")
     end
 
     def age_groups
+      # returns all possible age groups
       HTTParty.get("http://api.nytimes.com/svc/books/v2/lists/age-groups?api-key=#{api_key}")
     end
 
