@@ -39,19 +39,8 @@ module Bestsellers
         url << "?"
       end
 
-      if o[:offset]
-        offset = o[:offset].to_s
-        url << "&offset=#{offset}"
-      end
-
-      if o[:sort_by]
-        sort_by = o[:sort_by]
-        url << "&sort-by=#{sort_by}"
-      end
-
-      if o[:sort_order]
-        sort_order = o[:sort_order]
-        url << "&sort-order=#{sort_order}"
+      [:offset, :sort_by, :sort_order].each do |thing|
+        set_urlparam(url, thing, o)
       end
 
       url << "&api-key=#{api_key}"
@@ -68,40 +57,11 @@ module Bestsellers
       else
         Date.today
       end.strftime('%Y-%m-%e')
-      # date = (Date.parse o[:date] || Date.today).strftime('%Y-%m-%e')
-      # date = Date.today.strftime('%Y-%m-%e')
       url << "&date=#{date}"
 
-      if o[:isbn]
-        isbn = o[:isbn]
-        url << "&isbn=#{isbn}"
-      end
-
-      [:published_date, :rank, :rank_last_week, :weeks_on_list].each do |thing|
+      [:isbn, :published_date, :rank, :rank_last_week, :weeks_on_list].each do |thing|
         set_urlparam(url, thing, o)
       end
-      # set_urlparam(url, :published_date, o)
-      # set_urlparam(url, :rank, o)
-
-      # if o[:published_date]
-      #   published_date = o[:published_date]
-      #   url << "&published-date=#{published_date}"
-      # end
-
-      # if o[:rank]
-      #   rank = o[:rank]
-      #   url << "&rank=#{rank}"
-      # end
-
-      # if o[:rank_last_week]
-      #   rank_last_week = o[:rank_last_week]
-      #   url << "&rank-last-week=#{rank_last_week}"
-      # end
-
-      # if o[:weeks_on_list]
-      #   weeks_on_list = o[:weeks_on_list]
-      #   url << "&weeks-on-list=#{weeks_on_list}"
-      # end
 
       if o[:response_format]
         response_format = '.' + o[:response_format]
@@ -130,39 +90,8 @@ module Bestsellers
 
       url << "?"
 
-      if o[:author]
-        author = o[:author].to_s.gsub(/ /, '_')
-        url << "&author=#{author}"
-      end
-
-      if o[:publisher]
-        publisher = o[:publisher].gsub(/ /, '_')
-        url << "&publisher=#{publisher}"
-      end
-
-      if o[:title]
-        title = o[:title].gsub(/ /, '_')
-        url << "&title=#{title}"
-      end
-
-      if o[:age_group]
-        age_group = o[:age_group].gsub(/ /, '_')
-        url << "&age-group=#{age_group}"
-      end
-
-      if o[:contributor]
-        contributor = o[:contributor].gsub(/ /, '_')
-        url << "&contributor=#{contributor}"
-      end
-
-      if o[:isbn]
-        isbn = o[:isbn]
-        url << "&isbn=#{isbn}"
-      end
-
-      if o[:price]
-        price = o[:price]
-        url << "&price=#{price}"
+      [:author, :publisher, :title, :age_group, :contributor, :isbn, :price].each do |thing|
+        set_urlparam(url, thing, o)
       end
 
       url << "&api-key=#{api_key}"
