@@ -6,27 +6,36 @@ require_relative 'configuration'
 module Bestsellers
 
   class List
-    # instantiates a list
+    
     include Bestsellers::Configuration
     include HTTParty
+
+    BOOKS_URL= "http://api.nytimes.com/svc/books/v2/lists"
 
     def initialize
       reset
     end
 
+    def set_urlparam(url, name, options)
+      return unless options[name]
+      url << "&#{name.to_s.gsub('_','-')}=#{options[name]}"
+
+      # url << "&bestsellers-date=#{bestsellers_date}"
+     end
+
     def get_list(list_name, o = {})
-      url = "http://api.nytimes.com/svc/books/v2/lists"
+      url = BOOKS_URL
 
       if o[:date]
         date = o[:date]
         url << "/#{date}"
       end
-
+      
       url << "/#{list_name}"
 
       if o[:response_format]
         response_format = '.' + o[:response_format] + "?"
-        url << response_format
+        url << "#{response_format}"
       else
         url << "?"
       end
@@ -53,14 +62,15 @@ module Bestsellers
 
     def search_list(list_name, o = {})
 
-      url = "http://api.nytimes.com/svc/books/v2/lists?list-name=#{list_name}"
+      url = BOOKS_URL + "?list-name=#{list_name}"
 
-      if o[:bestsellers_date]
-        bestsellers_date = o[:bestsellers_date]
-        url << "&bestsellers-date=#{bestsellers_date}"
-      end
-
-      date = (Date.parse o[:date] || Date.today).strftime('%Y-%m-%e')
+      date = if o[:date]
+        Date.parse(o[:date]) 
+      else
+        Date.today
+      end.strftime('%Y-%m-%e')
+      # date = (Date.parse o[:date] || Date.today).strftime('%Y-%m-%e')
+      # date = Date.today.strftime('%Y-%m-%e')
       url << "&date=#{date}"
 
       if o[:isbn]
@@ -68,25 +78,31 @@ module Bestsellers
         url << "&isbn=#{isbn}"
       end
 
-      if o[:published_date]
-        published_date = o[:published_date]
-        url << "&published-date=#{published_date}"
+      [:published_date, :rank, :rank_last_week, :weeks_on_list].each do |thing|
+        set_urlparam(url, thing, o)
       end
+      # set_urlparam(url, :published_date, o)
+      # set_urlparam(url, :rank, o)
 
-      if o[:rank]
-        rank = o[:rank]
-        url << "&rank=#{rank}"
-      end
+      # if o[:published_date]
+      #   published_date = o[:published_date]
+      #   url << "&published-date=#{published_date}"
+      # end
 
-      if o[:rank_last_week]
-        rank_last_week = o[:rank_last_week]
-        url << "&rank-last-week=#{rank_last_week}"
-      end
+      # if o[:rank]
+      #   rank = o[:rank]
+      #   url << "&rank=#{rank}"
+      # end
 
-      if o[:weeks_on_list]
-        weeks_on_list = o[:weeks_on_list]
-        url << "&weeks-on-list=#{weeks_on_list}"
-      end
+      # if o[:rank_last_week]
+      #   rank_last_week = o[:rank_last_week]
+      #   url << "&rank-last-week=#{rank_last_week}"
+      # end
+
+      # if o[:weeks_on_list]
+      #   weeks_on_list = o[:weeks_on_list]
+      #   url << "&weeks-on-list=#{weeks_on_list}"
+      # end
 
       if o[:response_format]
         response_format = '.' + o[:response_format]
@@ -94,18 +110,18 @@ module Bestsellers
 
       url << "&api-key=#{api_key}"
 
-      HTTParty.get(url)
+     HTTParty.get(url)
     end
 
     def bestseller_lists_overview(o = {})
       date = (Date.parse o[:date] || Date.today).strftime('%Y-%m-%e')
 
-      HTTParty.get("http://api.nytimes.com/svc/books/v2/lists/overview?published_date=#{date}&api-key=#{api_key}")
+      HTTParty.get(BOOKS_URL + "/overview?published_date=#{date}&api-key=#{api_key}")
     end
 
     def single_history(o = {})
 
-      url = "http://api.nytimes.com/svc/books/v2/lists/best-sellers/history"
+      url = BOOKS_URL + "/best-sellers/history"
 
       if o[:response_format]
         response_format = '.' + o[:response_format]
@@ -155,11 +171,11 @@ module Bestsellers
     end
 
     def find_list_names
-      HTTParty.get("http://api.nytimes.com/svc/books/v2/lists/names?api-key=#{api_key}")
+      HTTParty.get(BOOKS_URL + "/names?api-key=#{api_key}")
     end
 
     def age_groups
-      HTTParty.get("http://api.nytimes.com/svc/books/v2/lists/age-groups?api-key=#{api_key}")
+      HTTParty.get(BOOKS_URL + "/age-groups?api-key=#{api_key}")
     end
 
   end
