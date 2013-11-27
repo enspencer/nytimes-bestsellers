@@ -28,7 +28,7 @@ describe Bestsellers::List do
     end
 
     it "searches the specified list by optional parameters" do
-      list = @client.search_list('hardcover-nonfiction')
+      list = @client.search_list('hardcover-nonfiction', date: '2013-11-27')
       list = JSON.parse(list.body)
       expect(a_request(:get, "http://api.nytimes.com/svc/books/v2/lists?api-key=abc123&date=2013-11-27&list-name=hardcover-nonfiction")).to have_been_made
       expect(list['results'][0]['list_name']).to eq "Hardcover Nonfiction"

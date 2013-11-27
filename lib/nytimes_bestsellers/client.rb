@@ -61,7 +61,7 @@ module Bestsellers
         url << "&bestsellers-date=#{bestsellers_date}"
       end
 
-      date = (o[:date] || Date.today).strftime('%Y-%m-%e')
+      date = (Date.parse o[:date] || Date.today).strftime('%Y-%m-%e')
       url << "&date=#{date}"
 
       if o[:isbn]
