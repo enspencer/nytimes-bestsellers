@@ -31,11 +31,13 @@ Setup a new instance:
 end
 ```
 
+and do your thing!
+
 ## Methods
 
-Five requests are available: get a best-seller list, search best-seller lists, get the history of a best seller, get an overview of all of the best-seller lists for a given week and get the names of Times best-seller lists.
+Six requests are available: get a bestseller list, get an overview of all of the best-seller lists for a given week, search a bestseller list, get the history of a single bestseller, get the names of all Times best-seller lists, and get the age group options that can be used as a parameter in the `single history` method.
 
-1. get_list(list_name, o = {})
+### get_list(list_name, o = {})
 
 This method has a required parameter of list name(see lists below or call the find_list_names method to find them for yourself) and takes an optional parameter of date, as a string in YYYY-MM-DD format. It also takes an optional parameter of response format and if none is specified it defaults to json.
 
@@ -45,7 +47,7 @@ with no optional parameters it gets the most recent list
 it can take optional parameters
 `@client.get_list('hardcover-nonfiction', date: '2012-04-12', response: 'xml')`
 
-2. bestseller_lists_overview()
+### bestseller_lists_overview()
 
 Returns an overview of Times best-seller lists for a single week. Takes an optional parameter of date in YYYY-MM-DD format. If you do not specify a published_date the most recent week's best-seller list will be returned.
 
@@ -53,19 +55,30 @@ Returns an overview of Times best-seller lists for a single week. Takes an optio
 `@client.bestseller_lists_overview(date: '2012-04-12')`
 
 
-3. search_list(list_name, o = {})
+### search_list(list_name, o = {})
 
 Allows for a filtered search of a specific list. Optional parameters are date, isbn, published_date, rank, rank_last_week, and weeks_on_list.
 
-4. single_history
+`@client.search_list('hardcover-nonfiction', published_date: "2013-04-12")`
 
-5. find_list_names
+### single_history()
 
-This method takes no parameters and returns all available list names which you can use to query the get_list method.
+Returns up to 20 weeks of history for a bestseller (its rank and number of weeks on the various Times best-seller lists). Takes one or more of the following parameters: , author, contributor, isbn, price, publisher, title, age_group(see below for age group options).
 
-6. age_groups
+`@client.single_history(author: 'rachel maddow')`
+
+
+### find_list_names
+
+This method takes no parameters and returns all available list names which you can use to query the get_list method. These names can be used as the required list_name parameter for get_list and single_history.
+
+`@client.find_list_names`
+
+### age_groups
 
 This method takes no parameters and returns all available age groups which you can use to query the single_history method. In most cases the age group will be null, so it's not a great search method on the data. I've listen the age groups below but you can see these available age groups for yourself using the `age_groups` method.
+
+`@client.age_groups`
 
 
 ## Lists
@@ -74,7 +87,7 @@ The list names to search from are:
 
 Combined Print and E-Book Fiction, Combined Print and E-Book Nonfiction, Hardcover Fiction, Hardcover Nonfiction, Trade Fiction Paperback, Mass Market Paperback, Paperback Nonfiction, E-Book Fiction, E-Book Nonfiction, Hardcover Advice, Paperback Advice, Advice How-To and Miscellaneous, Picture Books, Chapter Books, Childrens Middle Grade, Young Adult, Paperback Books, Series Books, Hardcover Graphic Books, Paperback Graphic Books, Manga, Combined Print Fiction, Combined Print Nonfiction, Hardcover Business Books, Paperback Business Books, Business Books, Hardcover Political Books, Science Times, Dining
 
-When passing these names as paraemeters replace spaces with hyphens. The parameter is not case sensitive.
+You can pass these names with spaces or replace spaces with hyphens, either works. The parameter is not case sensitive.
 
 ## Age Groups
 
