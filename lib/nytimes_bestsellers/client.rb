@@ -30,14 +30,7 @@ module Bestsellers
         url << "/#{date}"
       end
       
-      url << "/#{list_name}"
-
-      if o[:response_format]
-        response_format = '.' + o[:response_format] + "?"
-        url << "#{response_format}"
-      else
-        url << "?"
-      end
+      url << "/#{list_name}?"
 
       [:offset, :sort_by, :sort_order].each do |thing|
         set_urlparam(url, thing, o)
@@ -63,11 +56,6 @@ module Bestsellers
         set_urlparam(url, thing, o)
       end
 
-      if o[:response_format]
-        response_format = '.' + o[:response_format]
-        url << "#{response_format}"
-      end
-
       url << "&api-key=#{api_key}"
 
      HTTParty.get(url)
@@ -82,11 +70,6 @@ module Bestsellers
     def single_history(o = {})
 
       url = BOOKS_URL.clone + "/best-sellers/history"
-
-      if o[:response_format]
-        response_format = '.' + o[:response_format]
-        url << "#{response_format}"
-      end
 
       url << "?"
 

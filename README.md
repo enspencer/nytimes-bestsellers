@@ -2,7 +2,7 @@
 
 # New York Times Bestsellers
 
-This is a Ruby wrapper for the [NYTimes Bestsellers API](http://developer.nytimes.com/docs/best_sellers_api).
+A Ruby gem for accessing the [New York Times Bestsellers API](http://developer.nytimes.com/docs/best_sellers_api).
 
 ## Install
 
