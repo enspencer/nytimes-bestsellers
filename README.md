@@ -31,7 +31,7 @@ Setup a new instance:
 end
 ```
 
-Heads up! If you're not using Rails, note that you'll need to use `require nytimes_bestsellers` with the underscore rather than a dash when requiring the gem in your files.
+Heads up! If you're not using Rails, note that when requiring the gem in your files you'll need to use `require nytimes_bestsellers` with the underscore rather than a dash.
 
 ## Methods
 
