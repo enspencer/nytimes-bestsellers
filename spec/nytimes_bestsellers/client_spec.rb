@@ -24,14 +24,13 @@ describe Bestsellers::List do
 
   describe '#search_list' do
     before do
-      @date = "2013-11-26"
-      stub_request(:get, "http://api.nytimes.com/svc/books/v2/lists?api-key=abc123&date=#{@date}&list-name=hardcover-nonfiction").to_return(body: fixture('search_list.json'))
+      stub_request(:get, "http://api.nytimes.com/svc/books/v2/lists?api-key=abc123&date=2013-11-26&list-name=hardcover-nonfiction").to_return(body: fixture('search_list.json'))
     end
 
     it "searches the specified list by optional parameters" do
       list = @client.search_list('hardcover-nonfiction')
       list = JSON.parse(list.body)
-      expect(a_request(:get, "http://api.nytimes.com/svc/books/v2/lists?api-key=abc123&date=#{@date}&list-name=hardcover-nonfiction")).to have_been_made
+      expect(a_request(:get, "http://api.nytimes.com/svc/books/v2/lists?api-key=abc123&date=2013-11-26&list-name=hardcover-nonfiction")).to have_been_made
       expect(list['results'][0]['list_name']).to eq "Hardcover Nonfiction"
     end
 
