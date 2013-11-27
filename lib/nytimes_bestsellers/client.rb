@@ -105,40 +105,54 @@ module Bestsellers
     end
 
     def single_history(o = {})
-      age_group = o[:age_group]
+
+      url = "http://api.nytimes.com/svc/books/v2/lists/best-sellers/history"
+
+      if o[:response_format]
+        response_format = '.' + o[:response_format]
+        url << "#{response_format}"
+      end
+
+      url << "?"
+
       if o[:author]
         author = o[:author].to_s.gsub(/ /, '_')
+        url << "&author=#{author}"
       end
 
       if o[:publisher]
         publisher = o[:publisher].gsub(/ /, '_')
+        url << "&publisher=#{publisher}"
       end
 
       if o[:title]
         title = o[:title].gsub(/ /, '_')
-      end
-
-      if o[:response_format]
-        response_format = '.' + o[:response_format]
+        url << "&title=#{title}"
       end
 
       if o[:age_group]
         age_group = o[:age_group].gsub(/ /, '_')
+        url << "&age-group=#{age_group}"
       end
 
       if o[:contributor]
         contributor = o[:contributor].gsub(/ /, '_')
+        url << "&contributor=#{contributor}"
       end
 
       if o[:isbn]
         isbn = o[:isbn]
+        url << "&isbn=#{isbn}"
       end
 
       if o[:price]
         price = o[:price]
+        url << "&price=#{price}"
       end
 
-      HTTParty.get("http://api.nytimes.com/svc/books/v2/lists/best-sellers/history#{response_format}?author=#{author}&publisher=#{publisher}&age-group=#{age_group}&title=#{title}&api-key=#{api_key}")
+      url << "&api-key=#{api_key}"
+
+      HTTParty.get(url)
     end
 
     def find_list_names

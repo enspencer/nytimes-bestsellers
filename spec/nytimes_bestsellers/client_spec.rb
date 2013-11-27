@@ -36,6 +36,17 @@ describe Bestsellers::List do
 
   end
 
+  describe '#single_history' do
+    before do
+      stub_request(:get, "http://api.nytimes.com/svc/books/v2/lists/best-sellers/history?author=maddow&api-key=abc123").to_return(body: fixture('single_history.json'))
+    end
+
+    it "returns the list history of a single bestseller" do
+      list = @client.single_history()
+      list = JSON.parse(list.body)
+    end
+  end
+
   describe '#bestseller_lists_overview' do
     before do
       stub_request(:get, "http://api.nytimes.com/svc/books/v2/lists/overview?published_date=2011-01-16&api-key=abc123").to_return(body: fixture('overview.json'))
