@@ -42,8 +42,10 @@ describe Bestsellers::List do
     end
 
     it "returns the list history of a single bestseller" do
-      list = @client.single_history()
+      list = @client.single_history(author: 'maddow')
       list = JSON.parse(list.body)
+      expect(a_request(:get, "http://api.nytimes.com/svc/books/v2/lists/best-sellers/history?author=maddow&api-key=abc123")).to have_been_made
+      expect(list['results'][0]['title']).to eq "DRIFT"
     end
   end
 
