@@ -103,7 +103,6 @@
         0,
         null,
         null,
-        null,
         1,
         1,
         null,
@@ -214,7 +213,7 @@
         null
       ],
       "/Users/emmaspencer/Code/rubygems/nytimes-bestsellers/spec/nytimes_bestsellers/configuration_spec.rb": [
-
+        1
       ],
       "/Users/emmaspencer/Code/rubygems/nytimes-bestsellers/spec/nytimes_bestsellers_spec.rb": [
         1,
@@ -238,6 +237,6 @@
         null
       ]
     },
-    "timestamp": 1385505339
+    "timestamp": 1385524585
   }
 }
