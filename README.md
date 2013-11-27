@@ -49,10 +49,12 @@ it can take optional parameters
 
 2. bestseller_lists_overview()
 
-returns an overview of Times best-seller lists given a week in YYYY-MM-DD form
+Returns an overview of Times best-seller lists given a week in YYYY-MM-DD form
 `@client.bestseller_lists_overview('2012-04-12')`
 
 3. search_list(list_name, o = {})
+
+Allows for a filtered search of a specific list. Optional parameters are date, isbn, published_date, rank, rank_last_week, and weeks_on_list.
 
 4. single_history
 

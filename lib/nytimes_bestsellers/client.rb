@@ -61,7 +61,6 @@ module Bestsellers
         url << "&bestsellers-date=#{bestsellers_date}"
       end
 
-
       date = (o[:date] || Date.today).strftime('%Y-%m-%e')
       url << "&date=#{date}"
 
