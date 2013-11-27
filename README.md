@@ -39,17 +39,17 @@ Six requests are available: get a bestseller list, get an overview of all of the
 
 ### get_list(list_name, o = {})
 
-This method has a required parameter of list name(see lists below or call the find_list_names method to find them for yourself) and takes an optional parameter of date, as a string in YYYY-MM-DD format. It also takes an optional parameter of response format and if none is specified it defaults to json.
+This method has a required parameter of list name(see lists below or call the find_list_names method to find them for yourself) and takes optional parameters of date(as a string in YYYY-MM-DD format), offset, sort_by, and sort_order.
 
 with no optional parameters it gets the most recent list
 `@client.get_list('hardcover-nonfiction')`
 
 it can take optional parameters
-`@client.get_list('hardcover-nonfiction', date: '2012-04-12', response: 'xml')`
+`@client.get_list('hardcover-nonfiction', date: '2012-04-12', offset: 20)`
 
 ### bestseller_lists_overview()
 
-Returns an overview of Times best-seller lists for a single week. Takes an optional parameter of date in YYYY-MM-DD format. If you do not specify a published_date the most recent week's best-seller list will be returned.
+Returns an overview of Times best-seller lists for a single week. Takes an optional parameter of date in YYYY-MM-DD format. If you do not specify a date the most recent week's best-seller list will be returned.
 
 `@client.bestseller_lists_overview`
 `@client.bestseller_lists_overview(date: '2012-04-12')`
@@ -57,13 +57,13 @@ Returns an overview of Times best-seller lists for a single week. Takes an optio
 
 ### search_list(list_name, o = {})
 
-Allows for a filtered search of a specific list. Optional parameters are date, isbn, published_date, rank, rank_last_week, and weeks_on_list.
+Allows for a filtered search of a specific list. Optional parameters are date, isbn, published_date, rank, rank_last_week, and weeks_on_list. Has additional parameters of offset, sort_by, and sort_order.
 
 `@client.search_list('hardcover-nonfiction', published_date: "2013-04-12")`
 
 ### single_history()
 
-Returns up to 20 weeks of history for a bestseller (its rank and number of weeks on the various Times best-seller lists). Takes one or more of the following parameters: , author, contributor, isbn, price, publisher, title, age_group(see below for age group options).
+Returns up to 20 weeks of history for a bestseller (its rank and number of weeks on the various Times best-seller lists). Takes one or more of the following parameters: author, contributor, isbn, price, publisher, title, age_group(see below for age group options). Has additional parameters of sort_by and sort_order.
 
 `@client.single_history(author: 'rachel maddow')`
 

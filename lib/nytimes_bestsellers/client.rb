@@ -51,7 +51,7 @@ module Bestsellers
       end.strftime('%Y-%m-%e')
       url << "&date=#{date}"
 
-      [:isbn, :published_date, :rank, :rank_last_week, :weeks_on_list].each do |thing|
+      [:isbn, :published_date, :rank, :rank_last_week, :weeks_on_list, :offset, :sort_by, :sort_order].each do |thing|
         set_urlparam(url, thing, o)
       end
 
@@ -72,7 +72,7 @@ module Bestsellers
 
       url << "?"
 
-      [:author, :publisher, :title, :age_group, :contributor, :isbn, :price].each do |thing|
+      [:author, :publisher, :title, :age_group, :contributor, :isbn, :price, :sort_by, :sort_order].each do |thing|
         set_urlparam(url, thing, o)
       end
 
