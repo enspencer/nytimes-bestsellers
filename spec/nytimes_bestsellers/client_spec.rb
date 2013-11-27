@@ -49,6 +49,21 @@ describe Bestsellers::List do
     end
   end
 
+  describe '#age_groups' do
+
+    before do
+      stub_request(:get, "http://api.nytimes.com/svc/books/v2/lists/age-groups?api-key=abc123").to_return(body: fixture('age_groups.json'))
+    end
+
+    it "returns all age groups that books can take" do
+      list = @client.age_groups
+      list = JSON.parse(list.body)
+      expect(a_request(:get, "http://api.nytimes.com/svc/books/v2/lists/age-groups?api-key=abc123")).to have_been_made
+      expect(list['results'][0]['age_group']).to eq "Ages 1 to 5"
+      expect(list['results'][3]['age_group']).to eq "Ages 10 to 14"
+    end
+  end
+
 
 
 end
