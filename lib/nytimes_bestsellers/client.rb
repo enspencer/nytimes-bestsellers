@@ -1,7 +1,6 @@
 require 'json'
 require 'httparty'
-require 'pry'
-require_relative 'configuration'
+require 'nytimes_bestsellers/configuration'
 
 module Bestsellers
 

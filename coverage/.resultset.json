@@ -3,12 +3,6 @@
     "coverage": {
       "/Users/emmaspencer/Code/rubygems/nytimes-bestsellers/lib/nytimes_bestsellers.rb": [
         1,
-        1,
-        1,
-        null,
-        1,
-        null,
-        null,
         null,
         1,
         1,
@@ -29,7 +23,6 @@
         null
       ],
       "/Users/emmaspencer/Code/rubygems/nytimes-bestsellers/lib/nytimes_bestsellers/client.rb": [
-        1,
         1,
         1,
         1,
@@ -167,6 +160,6 @@
         null
       ]
     },
-    "timestamp": 1385575235
+    "timestamp": 1385581875
   }
 }

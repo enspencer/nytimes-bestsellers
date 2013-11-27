@@ -1,8 +1,4 @@
-require_relative 'nytimes_bestsellers/client'
-require 'pry'
-require 'dotenv'
-
-Dotenv.load "../.env"
+require 'nytimes_bestsellers/client'
 
 module Bestsellers
   class << self
