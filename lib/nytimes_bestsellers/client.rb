@@ -18,7 +18,7 @@ module Bestsellers
 
     def set_urlparam(url, name, options)
       return unless options[name]
-      url << "&#{name.to_s.gsub('_','-')}=#{options[name].gsub(' ', '-')}"
+      url << "&#{name.to_s.gsub('_','-')}=#{options[name].gsub(/ /, '-')}"
      end
 
     def get_list(list_name, o = {})
@@ -29,7 +29,7 @@ module Bestsellers
         url << "/#{date}"
       end
       
-      url << "/#{list_name}?"
+      url << "/#{list_name.gsub(/ /, '-')}?"
 
       [:offset, :sort_by, :sort_order].each do |thing|
         set_urlparam(url, thing, o)
@@ -42,7 +42,7 @@ module Bestsellers
 
     def search_list(list_name, o = {})
 
-      url = BOOKS_URL.clone + "?list-name=#{list_name}"
+      url = BOOKS_URL.clone + "?list-name=#{list_name.gsub(/ /, '-')}"
 
       date = if o[:date]
         Date.parse(o[:date]) 

@@ -15,7 +15,7 @@ describe Bestsellers::List do
     end
 
     it "fetches the specified list for the most recent week" do
-      list = @client.get_list('hardcover-fiction')
+      list = @client.get_list('hardcover fiction')
       list = JSON.parse(list.body)
       expect(a_request(:get, "http://api.nytimes.com/svc/books/v2/lists/hardcover-fiction?api-key=abc123")).to have_been_made
       expect(list['results'][0]['list_name']).to eq "Hardcover Fiction"
@@ -58,7 +58,7 @@ describe '#get_list' do
    it "should search from published_date" do
     today = '2013-11-27'
     date = '2013-11-27'
-     list = @client.search_list('hardcover-nonfiction', published_date: "#{today}", date: '2013-11-27')
+     list = @client.search_list('hardcover-nonfiction', published_date: "#{today}", date: "#{date}")
      expect(a_request(:get, "http://api.nytimes.com/svc/books/v2/lists?list-name=hardcover-nonfiction&date=2013-11-27&published-date=2013-11-27&api-key=abc123")).to have_been_made
    end
   end
