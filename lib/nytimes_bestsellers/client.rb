@@ -18,7 +18,7 @@ module Bestsellers
 
     def set_urlparam(url, name, options)
       return unless options[name]
-      url << "&#{name.to_s.gsub('_','-')}=#{options[name]}"
+      url << "&#{name.to_s.gsub('_','-')}=#{options[name].gsub(' ', '-')}"
      end
 
     def get_list(list_name, o = {})
