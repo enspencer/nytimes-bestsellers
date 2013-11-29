@@ -56,8 +56,9 @@ describe '#get_list' do
     end
    
    it "should search from published_date" do
-    today = Date.today
-     list = @client.search_list('hardcover-nonfiction', published_date: "#{today}")
+    today = '2013-11-27'
+    date = '2013-11-27'
+     list = @client.search_list('hardcover-nonfiction', published_date: "#{today}", date: '2013-11-27')
      expect(a_request(:get, "http://api.nytimes.com/svc/books/v2/lists?list-name=hardcover-nonfiction&date=2013-11-27&published-date=2013-11-27&api-key=abc123")).to have_been_made
    end
   end
