@@ -6,8 +6,9 @@ A Ruby gem for accessing the [New York Times Best Sellers API](http://developer.
 
 ## Install
 
-Add this line to your application's Gemfile:
+Add these lines to your application's Gemfile:
 
+    gem 'httparty'
     gem 'nytimes-bestsellers'
 
 And then execute:
