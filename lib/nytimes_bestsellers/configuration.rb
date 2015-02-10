@@ -2,8 +2,11 @@ module Bestsellers
   class Configuration
     attr_accessor :api_key
 
+    attr_accessor :lists_url
+
     def initialize
       @api_key = nil
+      @lists_url = 'http://api.nytimes.com/svc/books/v3/lists'
     end
 
     # Allows config options to be read like a hash

@@ -12,7 +12,6 @@ module Bestsellers
     #   end
     def configure(silent = false)
       yield(configuration)
-      self.sender
     end
 
     # The configuration object.
