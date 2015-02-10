@@ -1,18 +1,16 @@
 require 'json'
 require 'httparty'
-require 'nytimes_bestsellers/configuration'
 
 module Bestsellers
 
   class List
-    
-    include Bestsellers::Configuration
     include HTTParty
 
     BOOKS_URL = "http://api.nytimes.com/svc/books/v3/lists"
     BOOKS_URL
 
     def initialize
+      @api_key = Bestseller.Configuration.api_key
       reset
     end
 
@@ -35,7 +33,7 @@ module Bestsellers
         set_urlparam(url, thing, o)
       end
 
-      url << "&api-key=#{api_key}"
+      url << "&api-key=#{@api_key}"
 
       HTTParty.get(url)
     end
@@ -55,7 +53,7 @@ module Bestsellers
         set_urlparam(url, thing, o)
       end
 
-      url << "&api-key=#{api_key}"
+      url << "&api-key=#{@api_key}"
 
      HTTParty.get(url)
     end
@@ -63,7 +61,7 @@ module Bestsellers
     def bestseller_lists_overview(o = {})
       date = (Date.parse o[:date] || Date.today).strftime('%Y-%m-%e')
 
-      HTTParty.get(BOOKS_URL + "/overview?published_date=#{date}&api-key=#{api_key}")
+      HTTParty.get(BOOKS_URL + "/overview?published_date=#{date}&api-key=#{@api_key}")
     end
 
     def single_history(o = {})
@@ -76,17 +74,17 @@ module Bestsellers
         set_urlparam(url, thing, o)
       end
 
-      url << "&api-key=#{api_key}"
+      url << "&api-key=#{@api_key}"
 
       HTTParty.get(url)
     end
 
     def find_list_names
-      HTTParty.get(BOOKS_URL + "/names?api-key=#{api_key}")
+      HTTParty.get(BOOKS_URL + "/names?api-key=#{@api_key}")
     end
 
     def age_groups
-      HTTParty.get(BOOKS_URL + "/age-groups?api-key=#{api_key}")
+      HTTParty.get(BOOKS_URL + "/age-groups?api-key=#{@api_key}")
     end
 
   end
