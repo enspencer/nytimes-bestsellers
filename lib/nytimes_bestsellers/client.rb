@@ -9,7 +9,7 @@ module Bestsellers
     include Bestsellers::Configuration
     include HTTParty
 
-    BOOKS_URL = "http://api.nytimes.com/svc/books/v2/lists"
+    BOOKS_URL = "http://api.nytimes.com/svc/books/v3/lists"
     BOOKS_URL
 
     def initialize
