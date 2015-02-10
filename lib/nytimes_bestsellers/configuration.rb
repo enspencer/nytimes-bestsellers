@@ -1,15 +1,27 @@
 module Bestsellers
-  module Configuration
-    
+  class Configuration
     attr_accessor :api_key
 
-    def configure
-      yield self
+    attr_accessor :lists_url
+
+    def initialize
+      @api_key = nil
+      @lists_url = 'http://api.nytimes.com/svc/books/v3/lists'
     end
 
-    def reset
-      self.api_key = nil
-      self
+    # Allows config options to be read like a hash
+    #
+    # @param [Symbol] option Key for a given attribute
+    def [](option)
+      send(option)
+    end
+ 
+    # Returns a hash of all configurable options
+    def to_hash
+      OPTIONS.inject({}) do |hash, option|
+        hash[option.to_sym] = self.send(option)
+        hash
+      end
     end
   end
 end
