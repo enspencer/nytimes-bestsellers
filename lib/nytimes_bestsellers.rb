@@ -3,11 +3,6 @@ require 'nytimes_bestsellers/configuration'
 
 module Bestsellers
   class << self
-
-    def new
-      @list ||= Bestsellers::List.new
-    end
-
     # Call this method to modify defaults in your initializers.
     #
     # @example
